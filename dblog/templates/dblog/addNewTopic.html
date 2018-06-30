@@ -1,0 +1,96 @@
+{% extends "dblog/base.html"%} {% block content %}
+<script language="javascript">
+  function validateCategory()
+  {
+  
+ if(document.getElementById("id_form-0-Category").value ==  null || document.getElementById("id_form-0-Category").value == "")
+ {  
+    alert("Please Select Category" );
+    document.getElementById("id_form-0-Category").focus();
+	return false;
+ }
+ if(document.getElementById("id_form-0-Type").value ==  null || document.getElementById("id_form-0-Type").value == "")
+ {  
+    alert("Please Select Type of Artical" );
+    document.getElementById("id_form-0-Category").focus();
+	return false;
+ }
+ if(document.getElementById("id_form-0-Topic").value ==null || document.getElementById("id_form-0-Topic").value=="")
+ {  
+     alert("Topic can not be blank");
+    document.getElementById("id_form-0-Topic").focus();
+	return false;
+ }
+ if(document.getElementById("id_form-0-Short_Description").value==null ||  document.getElementById("id_form-0-Short_Description").value=="")
+ {
+    alert("Short_Description can not be blank");
+    document.getElementById("id_form-0-Short_Description").focus();
+	return false;
+ }
+ if(document.getElementById("id_form-0-Heading_of_detail").value==null ||  document.getElementById("id_form-0-Heading_of_detail").value=="")
+ {
+     alert(" Heading_of_detail can not be blank");
+    document.getElementById("id_form-0-Heading_of_detail").focus();
+	return false;
+ }
+ if(document.getElementById("id_form-0-Details").value ==null  || document.getElementById("id_form-0-Details").value=="")
+ {
+    alert(" Details can not be blank");
+    document.getElementById("id_form-0-Details").focus();
+	return false;
+ }
+ if(document.getElementById("id_form-0-Example_code").value==null || document.getElementById("id_form-0-Example_code").value=="")
+ {   
+     alert(" Example code  can not be blank");
+    document.getElementById("id_form-0-Example_code").focus();
+	return false;
+ }
+  
+ return true;
+ 
+
+}
+</script>
+<div class="container">
+		<div class="row" style= "hight:10;">
+			<div class="service">
+				<div class="col-md-12 ">
+				  <div class="pull-left">		<h2>Add topic in tutorial</h2>	 </div>
+				  <nav class="navbar pull-right"   id="submenu"  >
+                    <ul class="nav navbar-nav" id="one" >
+                     <li ><a  href="/dblog/newTopic" id="" class="btn btn-primary btn-sm">Post Tutorials / Q&A</a></li>
+                    </ul>                 
+                 </nav>
+				</div>
+			</div>
+		</div>
+	</div>
+ 
+	<div class="container">
+
+		<div class="row ">
+
+			<div class="col-sm-8 ">
+				<div class="page-header"> 
+				 
+					<form action="newTopic" class="contact-form" method="post"	>
+						{% csrf_token %}
+						<div class="form-group">
+							{{SubjectFormSet}} {{ topicformset }} {{subtopicformset}} 
+							   
+        
+							<input	type="submit" value="Save Post" class="btn btn-primary btn-lg"
+								onclick="return validateCategory();" />
+
+						</div>
+				     </form>
+				</div>
+			</div>
+		 
+		</div>
+
+	</div>
+	<!--/.container-->
+     
+
+{% endblock%}

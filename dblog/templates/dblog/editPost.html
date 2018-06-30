@@ -1,0 +1,70 @@
+{% extends "dblog/base.html"%} {% block content %}
+
+ <div class="container">
+		<div class="row" style= "hight:10;">
+			<div class="service">
+				<div class="col-md-12 ">
+				  <div class="pull-left">		<h2>{{subject.subName}}	Tutorials </h2>	 </div>
+				  {% if user.is_authenticated and  user.is_staff %}
+				  <nav class="navbar pull-right"   id="submenu"  >
+                    <ul class="nav navbar-nav" id="one" >
+                     <li ><a  href="/dblog/newTopic" id="" class="btn btn-primary btn-sm">Post Tutorials / Q&A</a></li>
+                    </ul>                 
+                 </nav>
+                 {% endif%}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+
+		<div class="row ">
+
+			<div class="col-sm-8 ">
+				<div class="page-header">
+				{% if user.is_authenticated and  user.is_staff %}
+                   {% if editTopic %}
+					   <form action="/dblog/editTopic/{{topic.subject_id}}/{{topic.id}}" class="contact-form" method="post"	 >
+						{% csrf_token %}
+						<div class="form-group">					
+						   {{editTopic}}
+						<input	type="submit" value="Save  topic" class="btn btn-primary btn-lg" />
+					 	</div>
+				     </form>
+				   {% else %}
+					  <form action="/dblog/editDetails/{{topic.subject_id}}/{{topic.id}}" class="contact-form" method="post"	 >
+						{% csrf_token %}
+						<div class="form-group">					
+						{{editSubTopic}} 
+						<input	type="submit" value="Save details" class="btn btn-primary btn-lg"
+								onclick="return validateCategory();" />
+					 	</div>
+				     </form>						
+				  {% endif %}	
+				 {% endif %}						
+				</div>
+			</div>
+		
+			<div class="col-md-4">
+				<form class="form-search">
+					<input class="form-control" type="text" placeholder="Search..">
+				</form>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Popular Posts</strong>
+					</div>
+					<div class="panel-body">
+						 
+					</div>
+				 
+					 
+					 
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--/.container-->
+ 
+
+{% endblock%}

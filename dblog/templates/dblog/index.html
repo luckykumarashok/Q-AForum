@@ -1,0 +1,108 @@
+{% extends "dblog/base.html"%} {% block content %}
+
+ <div class="container">
+		<div class="row" style= "hight:10;">
+			<div class="service">
+				<div class="col-md-12 ">
+				  <div class="pull-left">		<h3> Welcome! You are in the world of {{website.name}}</h3>	 </div>
+				 {% if user.is_authenticated and  user.is_staff %}
+				  <nav class="navbar pull-right"   id="submenu"  >
+                    <ul class="nav navbar-nav" id="one" >
+                     <li ><a  href="/dblog/newTopic" id="" class="btn btn-primary btn-sm">Post Tutorials / Q&A</a></li>
+                    </ul>                 
+                 </nav>
+                 {% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 ">
+			<div class="page-header">
+				<div class="container">
+					<div class="row">
+					
+						<div class="col-md-8 ">
+						<div class="row col-md-12 ">
+						 	<div class="col-md-6"  >
+								<div class="wow bounceIn" data-wow-offset="0" 
+									data-wow-delay="0.4s">									 
+									<div class="icon" >
+										<i class="icon-python" id="icon-python"	style="font-size: 2em;"
+											></i> <spam style="font-size: 2em;" onclick="location.href='/dblog/category/1';">Python</spam>
+									</div>
+									<a href="/dblog/category/1" class="btn btn-primary btn-lg">Tutorials</a>									 
+									<a href="/dblog/category/1" class="btn btn-primary btn-lg" >Question</a>									 
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="wow bounceIn" data-wow-offset="0"
+									data-wow-delay="0.4s">						 
+									<div class="icon">
+										<i class="icon-django" style="font-size: 2em;"></i><spam style="font-size: 2em;" onclick="location.href='/dblog/category/4';">Django</spam>
+									</div>
+									<a href="/dblog/category/4" class="btn btn-primary btn-lg">Tutorials</a>									 
+									<a href="/dblog/category/4"  class="btn btn-primary btn-lg" >Questions</a>
+								</div>
+							</div>
+							</div>
+							<div class="row col-md-12 ">
+							<div class="col-md-6">
+								<div class="wow bounceIn" data-wow-offset="0"
+									data-wow-delay="0.4s">							 
+									<div class="icon">
+										<i class=" fa fa-linux fa-3x " style="font-size: 2em;"></i><spam style="font-size: 2em;" onclick="location.href='/dblog/category/2';"> Linux</spam>
+									</div>
+									<a href="/dblog/category/2" class="btn btn-primary btn-lg">Tutorials</a>									 
+									<a href="/dblog/category/2"  class="btn btn-primary btn-lg" >Questions</a>
+								</div>
+							</div>
+							
+							<div class="col-md-6">
+								<div class="wow bounceIn" data-wow-offset="0"
+									data-wow-delay="0.4s"> 
+									<div class="icon">
+										<i class=" fa  fa-archive fa-2x "></i> <spam style="font-size: 2em;" onclick="location.href='/dblog/category/5';">  Data Structure  and algorithms </spam>
+									</div>
+									<a href="/dblog/category/5" class="btn btn-primary btn-lg">Tutorials</a>									 
+									<a href="/dblog/category/5"  class="btn btn-primary btn-lg" >Questions</a>
+								</div>
+							</div>
+							</div>
+							<div class="row col-md-12 ">
+							
+							<div class="col-md-6">
+								<div class="wow bounceIn" data-wow-offset="0"
+									data-wow-delay="0.4s"> 
+									<div class="icon"  >
+										<i class="icon-database-alt2" style="font-size: 2em;"></i> <spam style="font-size: 2em;" onclick="location.href='/dblog/category/3';"> SQL</spam>
+									</div>
+									<a href="/dblog/category/3" class="btn btn-primary btn-lg">Tutorials</a>									 
+									<a href="/dblog/category/3"  class="btn btn-primary btn-lg" >Question</a>
+								</div>
+							</div>
+							</div>
+							 
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+		<gcse:search></gcse:search> 							 
+			 
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<strong>Popular Posts</strong>
+				</div>
+				<div class="panel-body"></div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "dblog/base.html"%} {% block content %}
+	  
+      
+ <div class="container">
+		<div class="row" style= "hight:10;">
+
+			<div class="service">
+				<div class="col-md-12 ">
+				  <div class="pull-left">		<h2> {{subject.subName}}	Tutorials</h2>	 </div>
+				   {% if user.is_authenticated and  user.is_staff %}
+				  <nav class="navbar pull-right"   id="submenu"  >
+                    <ul class="nav navbar-nav" id="one" >
+                     <li ><a  href="/dblog/newTopic" id="" class="btn btn-primary btn-sm">Post Tutorials / Q&A</a></li>
+                    </ul>                 
+                 </nav>
+                 {% endif%}
+				</div>
+			</div>
+		</div>
+	</div>
+
+ {% if cur_topic %}
+	<div class="container">
+		<div class="row ">
+			<div class="col-sm-8 ">
+				<div class="page-header">	 				
+						<a  href="/dblog/topic/{{subject.id}}/{{cur_topic.id}}"><h3>{{cur_topic.topicName}}</h3></a>
+						<hr/>	
+						 <!-- <div class="popular-tags">
+						    
+						    <ul class="tags">
+						 #{% for tag in topic.tags.all %}
+							<li><a href="#">{{ tag.name }}</a></li>							 
+						 #{% endfor %}
+						 </ul>
+					    </div>	-->				  						
+						{% if SubTopic_list%}
+						   {%for subtopic in SubTopic_list %}
+						     {% if subtopic.subtopicName %} 
+						     <h4>{{subtopic.subtopicName}}</h4>
+						     {% endif %}
+						     {% if subtopic.subtopicDesc %}
+						     <p>{{subtopic.subtopicDesc|safe}}</p>
+						     {% endif %}
+						     
+						     {% if  subtopic.code.strip %}
+						    <pre class="prettyprint" > {{subtopic.code|safe}}  </pre> 
+						    {% endif %}
+						    
+						   {% endfor %}
+						   
+						 
+					   
+					    {% endif %}
+					   
+						{% if	subtopicformset %}
+						<form action="/dblog/addDetails/{{subject.id}}/{{topic.id}}" class="contact-form"  method="post">
+							{% csrf_token %}
+							<div class="form-group">
+							 {{ subtopicformset }}    
+							 <input type="submit" 	value="Save detail" />
+							 </div>
+						</form>
+						{% else %}
+						  {% if user.is_authenticated and  user.is_staff %}
+						    <input type="button" value="Edit Topic"	class="  btn-link  " onclick="location.href='/dblog/editTopic/{{subject.id}}/{{topic.id}}';" />
+						   <input type="button" value="Edit Details" class="    btn-link  "	onclick="location.href='/dblog/editDetails/{{subject.id}}/{{topic.id}}';" />
+						  {% endif %} 
+						{% endif %}
+						
+						
+ 
+				</div>
+				       <nav>
+				           {% if topics.has_previous %} 						  
+							 <a  li class="pull-left" href="/dblog/page/{{subject.id}}/{{topics.previous_page_number}}#{{topic.topicName.split|join:"_"}}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span> Previous </a> 
+						   {% endif %} 
+						     
+						   
+						   {% if topics.has_next %} 
+						     <a  class="pull-right" href="/dblog/page/{{subject.id}}/{{topics.next_page_number }}#{{topic.topicName.split|join:"_"}}"><span class="sr-only">Next</span>Next <span aria-hidden="true">&raquo;</span></a> 
+						   {% endif %}   
+						</nav>	
+			</div>
+
+
+			<div class="col-md-4">
+			<gcse:search></gcse:search> 
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Popular Posts</strong>
+					</div>
+					<div class="panel-body">
+					      {% if  topiclist %}
+		                   <ul >
+		                    {%for topic in topiclist %}     
+							<li><a href="/dblog/topic/{{subject.id}}/{{ topic.id}}#{{topic.topicName.split|join:"_"}}"  style="color:"blue" >{{topic.topicName}}</a> 
+							{% endfor %}
+							</ul>
+							{% endif %}  					 
+					</div>
+					 
+				 
+					 
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--/.container-->
+ 
+{% endif%}
+
+{% endblock %}
